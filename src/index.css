@@ -1,11 +1,18 @@
+@font-face {
+  font-family: 'regular';
+  src: url('/regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'regular', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
-  color: #000;
-  background-color: #fff;
+  color: #000000ff;
+  background-color: #eeeeeeff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,32 +26,80 @@
   margin: 2rem auto;
 }
 
+label {
+  font-weight: 500;
+  font-size: 0.9em;
+  color: #000000ff;
+  background-color: #ff6622ff;
+  border-radius: 0.5em;
+  padding: 1em 1.5em;
+  width: 10em;
+  cursor: pointer;
+  margin-right: .5em;
+}
+
+.filename {
+  font-size: 0.9em;
+}
+
+input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.button{
+  color: #eeeeeeff;
+  background-color: #000000ff;
+  border-radius: 0.5em;
+  padding: 1em 1.5em;
+  font-size: 0.9em;
+  font-family: 'regular';
+}
+.button, .disabled{
+  color: #eeeeeedd;
+  background-color: #000000dd;
+}
+
 .form-group {
   display: flex;
-  flex-direction: column;
+  margin-bottom: 1em;
+  align-items: center;
 }
 
 /* img */
 .letter {
-  /* width: 24px; */
+  width: 36px;
   height: 36px;
 }
 
-.texts {
+.navigation {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.5em;
+  margin-top: 2em;
+}
+
+.navigation-text {
+  width: 90%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1em;
 }
 
 .navigate_button {
-  width: 10%;
+  width: 5%;
   display: flex;
-  margin-top: 3em;
-  /* align-items: center; */
-  justify-content: center
+  font-size: 1.5em;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .segment {
-  width: 90%;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -57,8 +112,13 @@
   display: flex;
   flex-direction: column;
   margin-right: 1em;
+  margin-bottom: 1em;
 }
 .asl-wrapper {
   display: flex;
   align-items: center;
+}
+.word {
+  margin: 0;
+  font-size: 1.1em;
 }

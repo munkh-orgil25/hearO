@@ -57,54 +57,68 @@ function App() {
     }
   }
 
-  // console.log(texts)
-
   return (
     <main className='main'>
     <div className="">
       <form onSubmit={handleSubmit}>
         <div className='form-group'>
-          <label>Audio File</label>
-          <input name='audio' type='file' onChange={handleFile}/>
+          <div>
+            <label htmlFor="audio">Choose an audio file</label>
+          </div>
+          <p className='filename'>
+            {file?.name}
+          </p>
+          <input name='audio'id="audio" type='file' onChange={handleFile}/>
           {fileError ? <span>{fileError}</span> : null}
         </div>
         <div className='button-wrapper'>
-          <button>
-            Transcribe
-          </button>
+        {
+          fileError 
+          ? <button className='button disabled' disabled>
+              Transcribe
+            </button>
+          : <button className='button'>
+              {loading ? 'Loading...' : 'Transcribe'}
+            </button>
+        }
         </div>
       </form>
-      {texts.length > 1 ? 
-        <div className="texts">
+      {texts.length > 1 ?
+        <div className="navigation">
           <div className='navigate_button'>
             <GrPrevious onClick={prev}/>
           </div>
-          <div className='segment'>
-            <p>{texts[current]?.segment}</p>
-            <div className="words-wrapper">
-              {texts[current]?.letters.map(word => 
-              <div className='word-wrapper'>
-                <p className='word'>
-                  {word.join('')}
-                </p>
-                <div className='asl-wrapper'>
-                { 
-                  word.map(letter =>
-                    <div>
-                      <img className='letter' src={`/en/${letter}.png`} alt={letter}/>
-                    </div>
-                  )
-                }
-                </div>
-              </div>
-            )}
-            </div>
+          <div className='navigation-text'>
+            {current} / {texts.length}
           </div>
           <div className="navigate_button">
             <GrNext onClick={next}/>
           </div>
+        </div>
+      : null} 
+      <div className="texts">
+        <div className='segment'>
+          {/* <p>{texts[current]?.segment}</p> */}
+          <div className="words-wrapper">
+            {texts[current]?.letters.map(word => 
+            <div className='word-wrapper'>
+              <p className='word'>
+                {word.join('')}
+              </p>
+              <div className='asl-wrapper'>
+              { 
+                word.map(letter =>
+                  <div>
+                    <img className='letter' src={`/en/${letter}.png`} alt={letter}/>
+                  </div>
+                )
+              }
+              </div>
+            </div>
+          )}
+          </div>
+        </div>
       </div>
-      : null}
     </div>
     </main>
   )
